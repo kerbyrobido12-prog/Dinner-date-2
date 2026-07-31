@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinner Date Invitation ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffd6e7, #fff4c7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 25px;
+      padding: 35px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      animation: pop 0.5s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ff4d88;
+      font-size: 38px;
+    }
+
+    .subtitle {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* Step 1: Main Buttons Area */
+    .buttons-wrapper {
+      position: relative;
+      margin-top: 35px;
+      min-height: 220px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .option {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .option:hover {
+      transform: scale(1.08);
+    }
+
+    .option img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .option p {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff4d88;
+    }
+
+    /* Shared Step Styles */
+    #result, .success {
+      display: none;
+      animation: pop 0.4s ease-out;
+    }
+
+    #result {
+      text-align: left;
+    }
+
+    #result h2, .success h2 {
+      text-align: center;
+      color: #ff4d88;
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .form-img {
+      display: block;
+      margin: 0 auto 20px auto;
+      border-radius: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 6px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: #ff4d88;
+    }
+
+    button.submit {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #ff4d88;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button.submit:hover {
+      background: #ff2d70;
+    }
+
+    /* Step 3: Success & Letter View */
+    .success {
+      text-align: center;
+    }
+
+    .love-letter {
+      margin-top: 20px;
+      padding: 25px;
+      background: #fff5f8;
+      border: 2px dashed #ff4d88;
+      border-radius: 15px;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #444;
+      box-shadow: inset 0 0 10px rgba(255, 77, 136, 0.05);
+    }
+
+    .love-letter p {
+      margin-bottom: 12px;
+    }
+
+    .love-letter p:last-child {
+      margin-bottom: 0;
+      text-align: right;
+      font-weight: bold;
+      color: #ff4d88;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card" id="inviteCard">
+
+    <!-- STEP 1: INITIAL QUESTION -->
+    <div id="step1">
+      <h1>❤️ Dinner Date? ❤️</h1>
+      <p class="subtitle">
+        Hi Babyy! 💕<br><br>
+        Would you like to go on a dinner date with me?
+      </p>
+
+      <div class="buttons-wrapper" id="buttonArea">
+        <div class="option" id="yesBtn" onclick="yesClicked()">
+          <img src="happy-cat.gif" alt="Happy Cat">
+          <p>YES</p>
+        </div>
+
+        <div class="option" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">
+          <img src="crying-cat-gif.gif" alt="Crying Cat">
+          <p>NO</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: DETAILS FORM -->
+    <div id="result">
+      <h2>YAY!! 🎉</h2>
+      <img src="scuba-scuba-cat.webp" class="form-img" width="130" height="130" alt="Scuba Cat">
+
+      <label>📅 When?</label>
+      <input type="date" id="dateInput">
+
+      <label>📍 Where?</label>
+      <select id="placeSelect">
+        <option value="" disabled selected>Choose a place</option>
+        <option>Samgyupsal 🥓🥬</option>
+        <option>Japanese Restaurant 🍜🍛</option>
+        <option>Italian Restaurant 🍕🍝</option>
+        <option>Fast Food 🍔🍟</option>
+        <option>Coffee Shop ☕🥐</option>
+        <option>Anywhere you want ❤️</option>
+      </select>
+
+      <label>🍕 What do you want to eat?</label>
+      <input type="text" id="foodInput" placeholder="Pizza? Sushi? Steak? Anything you like ❤️">
+
+      <button class="submit" onclick="submitForm()">
+        Confirm Our Date ❤️
+      </button>
+    </div>
+
+    <!-- STEP 3: FINAL LOVE LETTER -->
+    <div class="success" id="success">
+      <h2>❤️ Date Confirmed! ❤️</h2>
+      
+      <div class="love-letter">
+        <p>Hi Babyy,</p>
+        <p>
+          I can't wait for our date! Thank you for always making my days brighter. 
+          I’m looking forward to spending some great time with you, eating good food, and making another awesome memory together.
+        </p>
+        <p>See you soon! 💕</p>
+        <p>— Yours always ❤️</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function yesClicked() {
+    document.getElementById("step1").style.display = "none";
+    document.getElementById("result").style.display = "block";
+  }
+
+  function submitForm() {
+    document.getElementById("result").style.display = "none";
+    document.getElementById("success").style.display = "block";
+  }
+
+  function moveNo() {
+    const btn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const container = document.getElementById("buttonArea");
+
+    // Make position absolute on hover
+    btn.style.position = "absolute";
+
+    const containerRect = container.getBoundingClientRect();
+    const yesRect = yesBtn.getBoundingClientRect();
+
+    const maxX = containerRect.width - btn.offsetWidth;
+    const maxY = containerRect.height - btn.offsetHeight;
+
+    let randomX, randomY;
+    let overlapping = true;
+    let attempts = 0;
+
+    // Generate random positions until it does NOT overlap with the YES button
+    while (overlapping && attempts < 20) {
+      randomX = Math.floor(Math.random() * maxX);
+      randomY = Math.floor(Math.random() * maxY);
+
+      // Coordinates relative to container
+      const noLeft = randomX;
+      const noRight = randomX + btn.offsetWidth;
+      const noTop = randomY;
+      const noBottom = randomY + btn.offsetHeight;
+
+      const yesLeft = yesRect.left - containerRect.left;
+      const yesRight = yesRect.right - containerRect.left;
+      const yesTop = yesRect.top - containerRect.top;
+      const yesBottom = yesRect.bottom - containerRect.top;
+
+      // Check collision
+      const isColliding = !(noRight < yesLeft || noLeft > yesRight || noBottom < yesTop || noTop > yesBottom);
+
+      if (!isColliding) {
+        overlapping = false;
+      }
+      attempts++;
+    }
+
+    btn.style.left = randomX + "px";
+    btn.style.top = randomY + "px";
+  }
+</script>
+
+</body>
+</html>
